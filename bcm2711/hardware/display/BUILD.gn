@@ -77,7 +77,8 @@ group("display_composer_model") {
 }
 ohos_shared_library("libdisplay_composer_vdi_impl") {
   sources = [
-    "//drivers/peripheral/display/composer/vdi_base/src/display_composer_vdi_impl.cpp",
+    #"//drivers/peripheral/display/composer/vdi_base/src/display_composer_vdi_impl.cpp",
+    "src/display_device/display_composer_vdi_impl.cpp",
 
     "src/display_device/hdi_gfx_composition.cpp",
     # "//drivers/peripheral/display/composer/vdi_base/src/hdi_gfx_composition.cpp",
