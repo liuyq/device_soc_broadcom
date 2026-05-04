@@ -11,6 +11,7 @@ ohos_prebuilt_shared_library("mesa_egl") {
     part_name = "device_rpi4"
     install_images = [ chipset_base_dir ]
     relative_install_dir = "chipsetsdk"
+    innerapi_tags = [ "chipsetsdk" ]
     symlink_target_name = [
         "libEGL.so.1",
         "libEGL.so",
@@ -60,6 +61,7 @@ ohos_prebuilt_shared_library("mesa_glesv1") {
     part_name = "device_rpi4"
     install_images = [ chipset_base_dir ]
     relative_install_dir = "chipsetsdk"
+    innerapi_tags = [ "chipsetsdk" ]
     symlink_target_name = [
         "libGLESv1_CM.so.1",
         "libGLESv1_CM.so",
@@ -78,6 +80,7 @@ ohos_prebuilt_shared_library("mesa_glesv2") {
     part_name = "device_rpi4"
     install_images = [ chipset_base_dir ]
     relative_install_dir = "chipsetsdk"
+    innerapi_tags = [ "chipsetsdk" ]
     symlink_target_name = [
         "libGLESv2.so.2",
         "libGLESv2.so",
