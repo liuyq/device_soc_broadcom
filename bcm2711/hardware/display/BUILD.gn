@@ -21,37 +21,51 @@ group("display_buffer_model") {
 }
 
 ohos_shared_library("libdisplay_buffer_vdi_impl") {
-  sources = [ 
+  sources = [
     "//drivers/peripheral/display/buffer/vdi_base/src/display_buffer_vdi_impl.cpp",
-    # "//drivers/peripheral/display/buffer/vdi_base/src/display_gralloc_gbm.cpp",
-    # "//drivers/peripheral/display/buffer/vdi_base/src/hi_gbm.cpp"
-
-    # "src/display_gralloc/display_buffer_vdi_impl.cpp",
-    "src/display_gralloc/display_gralloc_gbm.cpp",
-    "src/display_gralloc/hi_gbm.cpp"
-    ]
+  ]
 
   include_dirs = [
-    "include",
-    "//drivers/peripheral/display/buffer/vdi_base/include",
-
-    "//drivers/peripheral/base",
     "//drivers/interface/display/composer/hdifd_parcelable",
-    "//drivers/interface/display/buffer",
-    "//drivers/peripheral/display/utils/include",
     "//drivers/peripheral/display/buffer/hdi_service/include",
-    "//foundation/communication/ipc/interfaces/innerkits/ipc_core/include",
-
+    "//drivers/peripheral/display/buffer/vdi_base/include",
+    "//drivers/peripheral/display/utils/include",
   ]
 
   output_name = "libdisplay_buffer_vdi_impl"
   cflags = [
     "-DGRALLOC_GBM_SUPPORT",
-    "-Wno-macro-redefined",
   ]
-    deps = [
-    "//third_party/libdrm:libdrm",
+  deps = [ ":libdisplay_buffer_vendor" ]
+
+  external_deps = [
+    "c_utils:utils",
+    "drivers_interface_display:display_buffer_idl_headers",
+    "drivers_interface_display:display_composer_idl_headers",
+    "hilog:libhilog",
   ]
+
+  install_enable = true
+  install_images = [ chipset_base_dir ]
+  innerapi_tags = [ "passthrough" ]
+  part_name = "device_rpi4"
+}
+
+ohos_shared_library("libdisplay_buffer_vendor") {
+  sources = [
+    "src/display_gralloc/display_gralloc_gbm.cpp",
+    "src/display_gralloc/hi_gbm.cpp",
+  ]
+
+  include_dirs = [
+    "include",
+    "//drivers/interface/display/buffer",
+    "//drivers/interface/display/composer/hdifd_parcelable",
+    "//drivers/peripheral/display/buffer/vdi_base/include/",
+    "//drivers/peripheral/display/utils/include",
+  ]
+
+  output_name = "libdisplay_buffer_vendor"
 
   external_deps = [
     "c_utils:utils",
@@ -59,7 +73,7 @@ ohos_shared_library("libdisplay_buffer_vdi_impl") {
     "drivers_interface_display:display_composer_idl_headers",
     "hdf_core:libhdf_utils",
     "hilog:libhilog",
-    "ipc:ipc_single",
+    "libdrm:libdrm",
   ]
 
   install_enable = true
